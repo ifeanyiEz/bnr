@@ -1,0 +1,634 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap');
+  @import url('https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0B1F3A;
+    --navy-light: #122848;
+    --gold: #CDA34D;
+    --gold-light: #E0BC7A;
+    --gold-dark: #A8832D;
+    --platinum: #E5E7EB;
+    --white: #ffffff;
+    --text-muted: #9CA3AF;
+  }
+
+  .site { font-family: 'Raleway', sans-serif; background: var(--navy); color: var(--platinum); overflow-x: hidden; }
+
+  /* CONTAINER */
+  .container {
+    width: 70%;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* NAV */
+  nav {
+    background: rgba(11,31,58,0.97);
+    border-bottom: 1px solid rgba(205,163,77,0.25);
+    height: 72px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 70%;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo img {
+    height: 52px;
+    width: 52px;
+    object-fit: contain;
+    mix-blend-mode: lighten;
+    filter: drop-shadow(0 0 6px rgba(205,163,77,0.3));
+  }
+  .nav-brand { display: flex; flex-direction: column; }
+  .nav-brand-name { font-size: 14px; font-weight: 800; color: var(--white); letter-spacing: 1.5px; line-height: 1; }
+  .nav-brand-sub { font-size: 9px; font-weight: 500; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-top: 3px; }
+  .nav-links { display: flex; align-items: center; }
+  .nav-links a {
+    color: var(--platinum);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0 13px;
+    height: 72px;
+    display: flex; align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+  .nav-cta {
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    border-radius: 4px !important;
+    height: 38px !important;
+    padding: 0 18px !important;
+    font-weight: 800 !important;
+    margin-left: 10px;
+    border-bottom: none !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; }
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 101;
+    flex-shrink: 0;
+  }
+  .nav-hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--platinum);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  /* HERO */
+  .hero {
+    min-height: 85vh;
+    background: var(--navy);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(205,163,77,0.04) 0px, rgba(205,163,77,0.04) 1px, transparent 1px, transparent 60px),
+      repeating-linear-gradient(0deg, rgba(205,163,77,0.04) 0px, rgba(205,163,77,0.04) 1px, transparent 1px, transparent 60px);
+  }
+  .hero-glow {
+    position: absolute; top: 10%; right: -80px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(205,163,77,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-logo-bg {
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 420px; height: 420px;
+    opacity: 0.07;
+  }
+  .hero-logo-bg img { width: 100%; height: 100%; object-fit:fill; mix-blend-mode: lighten; }
+  .hero-skyline {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    width: 100%; height: 50%; opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1400 400'%3E%3Crect x='0' y='160' width='50' height='240' fill='white'/%3E%3Crect x='0' y='130' width='25' height='30' fill='white'/%3E%3Crect x='80' y='120' width='60' height='280' fill='white'/%3E%3Crect x='90' y='100' width='40' height='30' fill='white'/%3E%3Crect x='160' y='60' width='80' height='340' fill='white'/%3E%3Crect x='170' y='40' width='60' height='30' fill='white'/%3E%3Crect x='250' y='160' width='50' height='240' fill='white'/%3E%3Crect x='310' y='80' width='90' height='320' fill='white'/%3E%3Crect x='320' y='50' width='70' height='40' fill='white'/%3E%3Crect x='340' y='20' width='30' height='40' fill='white'/%3E%3Crect x='410' y='140' width='55' height='260' fill='white'/%3E%3Crect x='475' y='100' width='70' height='300' fill='white'/%3E%3Crect x='485' y='70' width='50' height='40' fill='white'/%3E%3Crect x='555' y='180' width='45' height='220' fill='white'/%3E%3Crect x='610' y='50' width='100' height='350' fill='white'/%3E%3Crect x='625' y='20' width='70' height='40' fill='white'/%3E%3Crect x='650' y='0' width='20' height='30' fill='white'/%3E%3Crect x='720' y='130' width='60' height='270' fill='white'/%3E%3Crect x='790' y='90' width='80' height='310' fill='white'/%3E%3Crect x='800' y='60' width='60' height='40' fill='white'/%3E%3Crect x='880' y='170' width='50' height='230' fill='white'/%3E%3Crect x='940' y='70' width='85' height='330' fill='white'/%3E%3Crect x='950' y='40' width='65' height='40' fill='white'/%3E%3Crect x='1035' y='150' width='55' height='250' fill='white'/%3E%3Crect x='1100' y='100' width='70' height='300' fill='white'/%3E%3Crect x='1180' y='60' width='90' height='340' fill='white'/%3E%3Crect x='1190' y='30' width='70' height='40' fill='white'/%3E%3Crect x='1280' y='140' width='60' height='260' fill='white'/%3E%3Crect x='1350' y='170' width='50' height='230' fill='white'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: auto 100%;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0;
+    max-width: min(1080px, 56.25vw);
+  }
+  .hero-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+  .hero-eyebrow-line { width: 40px; height: 2px; background: var(--gold); }
+  .hero-eyebrow-text { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+  .hero-title { font-size: clamp(38px, 6.875vw, 132px); font-weight: 500; line-height: 1.0; color: var(--white); letter-spacing: -1.5px; }
+  .hero-title-accent { color: var(--gold); }
+  .hero-title-sub { font-size: clamp(32px, 5.833vw, 112px); font-weight: 300; font-style: italic; line-height: 1.0; color: var(--platinum); letter-spacing: -1.5px; margin-bottom: 28px; }
+  .hero-desc { font-size: 15px; color: #9CA3AF; line-height: 1.85; max-width: 520px; margin-bottom: 40px; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+  .btn-gold { background: var(--gold); color: var(--navy); padding: 14px 32px; font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; border: none; cursor: pointer; border-radius: 3px; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-outline { background: transparent; color: var(--platinum); padding: 13px 28px; font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; border: 1px solid rgba(229,231,235,0.3); cursor: pointer; border-radius: 3px; display: inline-flex; align-items: center; gap: 8px; }
+  .hero-stats { position: absolute; bottom: 3rem; right: 2rem; display: flex; gap: 40px; z-index: 2; }
+  .hero-stat-num { font-size: 34px; font-weight: 900; color: var(--gold); line-height: 1; }
+  .hero-stat-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+  .hero-scroll { position: absolute; bottom: 3rem; left: 2rem; display: flex; align-items: center; gap: 10px; z-index: 2; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
+  .scroll-text { font-size: 9px; font-weight: 700; letter-spacing: 3px; color: var(--text-muted); text-transform: uppercase; }
+
+  /* MARQUEE */
+  .marquee-strip { background: var(--gold); padding: 11px 0; overflow: hidden; }
+  .marquee-inner { display: flex; gap: 48px; animation: marquee 22s linear infinite; width: max-content; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-item { font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--navy); white-space: nowrap; display: flex; align-items: center; gap: 16px; }
+  .marquee-dot { width: 4px; height: 4px; background: var(--navy); border-radius: 50%; opacity: 0.4; }
+
+  /* ABOUT */
+  .about-strip { background: var(--navy-light); border-top: 1px solid rgba(205,163,77,0.12); border-bottom: 1px solid rgba(205,163,77,0.12); padding: 5rem 0; }
+  .about-inner { display: flex; gap: 80px; align-items: flex-start; }
+  .about-left { flex: 1; }
+  .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .section-label-line { width: 30px; height: 2px; background: var(--gold); }
+  .section-label-text { font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+  .section-title { font-size: 36px; font-weight: 800; color: var(--white); line-height: 1.2; margin-bottom: 18px; }
+  .section-title em { font-style: normal; color: var(--gold); }
+  .section-body { font-size: 14px; color: #9CA3AF; line-height: 1.9; margin-bottom: 24px; }
+  .about-right { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+  .about-pillar { display: flex; gap: 16px; align-items: flex-start; padding: 18px; border: 1px solid rgba(205,163,77,0.15); border-radius: 6px; background: rgba(11,31,58,0.6); }
+  .pillar-icon { width: 42px; height: 42px; flex-shrink: 0; background: rgba(205,163,77,0.1); border: 1px solid rgba(205,163,77,0.3); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 20px; }
+  .pillar-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .pillar-desc { font-size: 12px; color: #6B7280; line-height: 1.6; }
+
+  /* SERVICES */
+  .services { padding: 5rem 0; background: var(--navy); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 3rem; }
+  .service-card { background: var(--navy-light); padding: 32px 26px; border: 1px solid rgba(205,163,77,0.1); position: relative; overflow: hidden; cursor: pointer; transition: border-color 0.3s; }
+  .service-card:hover { border-color: rgba(205,163,77,0.45); }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold-dark), var(--gold)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-num { font-size: 48px; font-weight: 900; color: rgba(205,163,77,0.07); line-height: 1; margin-bottom: 10px; letter-spacing: -2px; }
+  .service-icon { font-size: 26px; color: var(--gold); margin-bottom: 14px; }
+  .service-name { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .service-desc { font-size: 12px; color: #6B7280; line-height: 1.7; }
+  .service-arrow { margin-top: 18px; font-size: 18px; color: var(--gold); opacity: 0; transition: opacity 0.3s; }
+  .service-card:hover .service-arrow { opacity: 1; }
+
+  /* PROPERTIES */
+  .properties { padding: 5rem 0; background: var(--navy-light); }
+  .properties-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 3rem; }
+  .prop-card { background: var(--navy); border: 1px solid rgba(205,163,77,0.12); border-radius: 8px; overflow: hidden; }
+  .prop-img { height: 175px; position: relative; overflow: hidden; }
+  .prop-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+  .prop-img-placeholder.blue { background: linear-gradient(135deg, #0d1f3c, #1a3a6b); }
+  .prop-img-placeholder.teal { background: linear-gradient(135deg, #0a2a2a, #0d4a4a); }
+  .prop-img-placeholder.warm { background: linear-gradient(135deg, #2a1a0a, #4a3010); }
+  .prop-badge { position: absolute; top: 12px; left: 12px; background: var(--gold); color: var(--navy); font-size: 9px; font-weight: 800; letter-spacing: 2px; padding: 4px 10px; border-radius: 3px; text-transform: uppercase; }
+  .prop-info { padding: 18px; }
+  .prop-type { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+  .prop-name { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 5px; }
+  .prop-location { font-size: 11px; color: #6B7280; margin-bottom: 12px; display: flex; align-items: center; gap: 4px; }
+  .prop-details { display: flex; justify-content: space-between; border-top: 1px solid rgba(205,163,77,0.1); padding-top: 12px; }
+  .prop-detail { font-size: 11px; color: #6B7280; display: flex; align-items: center; gap: 4px; }
+
+  /* WHY */
+  .why { padding: 5rem 0; background: var(--navy); }
+  .why-inner { display: flex; gap: 60px; align-items: center; }
+  .why-visual { flex: 1; background: var(--navy-light); border: 1px solid rgba(205,163,77,0.2); border-radius: 8px; padding: 2.5rem; display: flex; flex-direction: column; gap: 10px; }
+  .why-bar-label { font-size: 11px; font-weight: 600; color: #9CA3AF; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .why-bar-track { background: rgba(205,163,77,0.08); height: 6px; border-radius: 3px; overflow: hidden; margin-bottom: 14px; }
+  .why-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--gold-dark), var(--gold)); }
+  .why-content { flex: 1; }
+  .why-points { display: flex; flex-direction: column; gap: 18px; margin-top: 22px; }
+  .why-point { display: flex; gap: 14px; align-items: flex-start; }
+  .why-point-check { width: 26px; height: 26px; flex-shrink: 0; background: rgba(205,163,77,0.12); border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 12px; }
+  .why-point-text { font-size: 13px; color: #D1D5DB; line-height: 1.6; }
+  .why-point-text strong { color: var(--white); font-weight: 700; display: block; margin-bottom: 2px; }
+
+  /* CTA */
+  .cta-section { padding: 2rem 0; background: var(--navy); }
+  .cta-banner { background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light)); border-radius: 10px; padding: 3.5rem 4rem; display: flex; align-items: center; justify-content: space-between; gap: 40px; position: relative; overflow: hidden; }
+  .cta-banner::before { content: ''; position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; border: 40px solid rgba(11,31,58,0.1); border-radius: 50%; }
+  .cta-title { font-size: 28px; font-weight: 900; color: var(--navy); line-height: 1.2; }
+  .cta-sub { font-size: 13px; color: rgba(11,31,58,0.65); margin-top: 8px; font-weight: 500; }
+  .btn-navy { background: var(--navy); color: var(--gold); padding: 15px 32px; font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; border: none; cursor: pointer; border-radius: 4px; white-space: nowrap; flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px; }
+
+  /* CONTACT */
+  .contact { padding: 5rem 0; background: var(--navy-light); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 3rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 24px; }
+  .contact-item { display: flex; gap: 14px; align-items: flex-start; }
+  .contact-icon { width: 42px; height: 42px; flex-shrink: 0; background: rgba(205,163,77,0.1); border: 1px solid rgba(205,163,77,0.3); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 18px; }
+  .contact-item-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 4px; }
+  .contact-item-val { font-size: 13px; color: #D1D5DB; line-height: 1.7; }
+  .contact-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
+  .form-input { background: rgba(11,31,58,0.8); border: 1px solid rgba(205,163,77,0.2); color: var(--white); padding: 11px 14px; font-family: 'Raleway', sans-serif; font-size: 13px; border-radius: 4px; outline: none; }
+  .form-input:focus { border-color: var(--gold); }
+  .form-textarea { resize: vertical; min-height: 90px; }
+
+  /* FOOTER */
+  footer { background: #060F1E; border-top: 1px solid rgba(205,163,77,0.2); padding: 4rem 0 2rem; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 3rem; }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .footer-logo img { height: 48px; width: 48px; object-fit: contain; mix-blend-mode: lighten; filter: drop-shadow(0 0 4px rgba(205,163,77,0.25)); }
+  .footer-brand-desc { font-size: 13px; color: #6B7280; line-height: 1.8; margin-bottom: 18px; }
+  .footer-social { display: flex; gap: 10px; }
+  .social-btn { width: 34px; height: 34px; border: 1px solid rgba(205,163,77,0.3); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 16px; cursor: pointer; }
+  .footer-col-title { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .footer-col ul li a { font-size: 12px; color: #6B7280; text-decoration: none; }
+  .footer-col ul li a:hover { color: var(--platinum); }
+  .footer-bottom { border-top: 1px solid rgba(205,163,77,0.1); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: #4B5563; }
+  .footer-copy span { color: var(--gold); }
+
+  /* RESPONSIVE BREAKPOINTS */
+
+  @media (min-width: 1920px) {
+    .container { width: 1440px; }
+    .nav-inner { width: 1440px; }
+  }
+
+  @media (max-width: 1279px) {
+    .container { width: 80%; }
+    .nav-inner { width: 80%; }
+  }
+
+  @media (max-width: 1024px) {
+    .nav-hamburger { display: flex; }
+    .nav-links {
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      background: rgba(11,31,58,0.97);
+      border-bottom: 1px solid rgba(205,163,77,0.25);
+      padding: 0.5rem 0 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 99;
+      backdrop-filter: blur(8px);
+    }
+    .nav-links.open { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .nav-links a { height: auto; padding: 14px 2rem; font-size: 12px; border-bottom: none; border-left: 2px solid transparent; }
+    .nav-links a:hover { border-bottom-color: transparent; border-left-color: var(--gold); background: rgba(205,163,77,0.04); }
+    .nav-cta { margin: 8px 2rem 0 !important; height: 42px !important; display: flex !important; width: calc(100% - 4rem) !important; justify-content: center !important; }
+    .hero { flex-direction: column; align-items: flex-start; min-height: auto; padding: 5rem 0 3rem; }
+    #hero-logo-bg { display: none; }
+    #hero-stats { position: static; gap: 24px; margin-top: 2.5rem; }
+    #hero-scroll { position: static; margin-top: 1.5rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .about-inner { gap: 40px; }
+    .why-inner { gap: 40px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 1023px) {
+    .container { width: 85%; }
+    .nav-inner { width: 85%; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-content { max-width: 100%; }
+    #hero-scroll { display: none; }
+    .about-inner { flex-direction: column; gap: 32px; }
+    .properties-grid { grid-template-columns: 1fr; }
+    .why-inner { flex-direction: column; }
+    .cta-banner { flex-direction: column; text-align: center; padding: 2.5rem 2rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  @media (max-width: 767px) {
+    .container { width: 90%; }
+    .nav-inner { width: 90%; }
+  }
+
+  @media (max-width: 576px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 0 1rem; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+    .section-title { font-size: 28px; }
+  }
+</style>
+
+<div class="site">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <img src="XprntPrmryDoveLogo.png" alt="BNR Investments Logo" />
+      <div class="nav-brand">
+        <span class="nav-brand-name">BNR INVESTMENTS LTD</span>
+        <!-- <span class="nav-brand-sub">Property &amp; Real Estate Development</span> -->
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Properties</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact Us</a>
+      <a href="#" class="nav-cta">Get a Quote</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="position:relative; overflow:hidden; background:var(--navy);">
+    <div class="container hero" style="background:transparent;">
+      <div id="hero-bg-pattern" class="hero-bg-pattern"></div>
+      <div id="hero-glow" class="hero-glow"></div>
+      <div id="hero-logo-bg" class="hero-logo-bg">
+        <img src="XprntPrmryDoveLogo.png" alt="" aria-hidden="true" />
+      </div>
+      <div id="hero-main" style="position:relative; z-index:2; width:100%;">
+        <div id="hero-content" class="hero-content">
+          <div id="hero-eyebrow" class="hero-eyebrow">
+            <div class="hero-eyebrow-line"></div>
+            <span class="hero-eyebrow-text">Abuja's Premier Property Developer</span>
+          </div>
+          <div id="hero-title" class="hero-title">Building <span class="hero-title-accent">Towering</span></div>
+          <div id="hero-title-sub" class="hero-title-sub">Legacies</div>
+          <p id="hero-desc" class="hero-desc">BNR Investments Ltd delivers world-class real estate solutions across Nigeria — from landmark residential towers to premium commercial developments built to endure.</p>
+          <div id="hero-actions" class="hero-actions">
+            <button class="btn-gold">Explore Properties <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+            <button class="btn-outline">Our Services <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+      <div id="hero-stats" class="hero-stats">
+        <div id="hero-stat-projects" class="hero-stat-item" style="text-align:center">
+          <div class="hero-stat-num">120+</div>
+          <div class="hero-stat-label">Projects Completed</div>
+        </div>
+        <div id="hero-stat-years" class="hero-stat-item" style="text-align:center">
+          <div class="hero-stat-num">15+</div>
+          <div class="hero-stat-label">Years of Excellence</div>
+        </div>
+        <div id="hero-stat-satisfaction" class="hero-stat-item" style="text-align:center">
+          <div class="hero-stat-num">98%</div>
+          <div class="hero-stat-label">Client Satisfaction</div>
+        </div>
+      </div>
+      <div id="hero-scroll" class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span class="scroll-text">Scroll to Explore</span>
+      </div>
+    </div>
+    <div class="hero-skyline"></div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-inner">
+      <span class="marquee-item">Residential Development <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Commercial Real Estate <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Property Management <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Land Acquisition <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Investment Consulting <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Construction Services <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Abuja &amp; Beyond <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Residential Development <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Commercial Real Estate <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Property Management <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Land Acquisition <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Investment Consulting <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Construction Services <span class="marquee-dot"></span></span>
+      <span class="marquee-item">Abuja &amp; Beyond <span class="marquee-dot"></span></span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about-strip">
+    <div class="container"><div class="about-inner">
+    <div class="about-left">
+      <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">Who We Are</span></div>
+      <h2 class="section-title">Built on Purpose.<br><em>Raised with Vision.</em></h2>
+      <p class="section-body">BNR Investments Ltd is a leading real estate and property development company headquartered in Abuja, Nigeria. With a legacy anchored in quality, integrity, and architectural excellence, we transform skylines and create spaces where people thrive.</p>
+      <p class="section-body">Our dove emblem reflects our commitment to rising above — building not just structures, but lasting legacies that elevate communities and unlock investment potential.</p>
+      <button class="btn-gold">Learn More About Us <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+    </div>
+    <div class="about-right">
+      <div class="about-pillar">
+        <div class="pillar-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+        <div><div class="pillar-title">Integrity-Driven</div><div class="pillar-desc">Every project is executed with full transparency, from contract to key handover.</div></div>
+      </div>
+      <div class="about-pillar">
+        <div class="pillar-icon"><i class="ti ti-building-skyscraper" aria-hidden="true"></i></div>
+        <div><div class="pillar-title">Structural Excellence</div><div class="pillar-desc">We engineer towering structures built to the highest standards of modern construction.</div></div>
+      </div>
+      <div class="about-pillar">
+        <div class="pillar-icon"><i class="ti ti-chart-line" aria-hidden="true"></i></div>
+        <div><div class="pillar-title">Investment Growth</div><div class="pillar-desc">Our developments are strategically positioned to maximise long-term property value.</div></div>
+      </div>
+    </div>
+    </div></div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="container">
+    <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">What We Do</span></div>
+    <h2 class="section-title" style="margin-top:8px">Our Core <em>Services</em></h2>
+    <div class="services-grid">
+      <div class="service-card"><div class="service-num">01</div><div class="service-icon"><i class="ti ti-home-2" aria-hidden="true"></i></div><div class="service-name">Residential Development</div><div class="service-desc">Premium housing estates, apartments, and private homes crafted for modern Nigerian living.</div><div class="service-arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div></div>
+      <div class="service-card"><div class="service-num">02</div><div class="service-icon"><i class="ti ti-building" aria-hidden="true"></i></div><div class="service-name">Commercial Real Estate</div><div class="service-desc">Office complexes, retail centres, and mixed-use developments for business growth.</div><div class="service-arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div></div>
+      <div class="service-card"><div class="service-num">03</div><div class="service-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div><div class="service-name">Land Acquisition</div><div class="service-desc">Expert guidance on prime land identification, due diligence, and acquisition in key locations.</div><div class="service-arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div></div>
+      <div class="service-card"><div class="service-num">04</div><div class="service-icon"><i class="ti ti-tool" aria-hidden="true"></i></div><div class="service-name">Property Management</div><div class="service-desc">Full-service management ensuring your investments perform and your properties appreciate.</div><div class="service-arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div></div>
+      <div class="service-card"><div class="service-num">05</div><div class="service-icon"><i class="ti ti-coins" aria-hidden="true"></i></div><div class="service-name">Investment Consulting</div><div class="service-desc">Strategic real estate investment advisory for individuals, corporations, and diaspora clients.</div><div class="service-arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div></div>
+      <div class="service-card"><div class="service-num">06</div><div class="service-icon"><i class="ti ti-ruler" aria-hidden="true"></i></div><div class="service-name">Design &amp; Construction</div><div class="service-desc">End-to-end architectural design and construction management from foundation to finishing.</div><div class="service-arrow"><i class="ti ti-arrow-right" aria-hidden="true"></i></div></div>
+    </div>
+    </div>
+  </section>
+
+  <!-- PROPERTIES -->
+  <section class="properties">
+    <div class="container">
+    <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">Featured Listings</span></div>
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:8px">
+      <h2 class="section-title">Prime <em>Properties</em></h2>
+      <button class="btn-outline" style="font-size:11px; padding:10px 18px">View All <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+    </div>
+    <div class="properties-grid">
+      <div class="prop-card">
+        <div class="prop-img"><div class="prop-img-placeholder blue"><svg width="80" height="80" viewBox="0 0 80 80" fill="none"><rect x="10" y="20" width="16" height="60" fill="rgba(205,163,77,0.3)"/><rect x="30" y="8" width="20" height="72" fill="rgba(205,163,77,0.5)"/><rect x="54" y="28" width="16" height="52" fill="rgba(205,163,77,0.3)"/></svg></div><span class="prop-badge">For Sale</span></div>
+        <div class="prop-info"><div class="prop-type">Residential</div><div class="prop-name">Wuse Garden Towers</div><div class="prop-location"><i class="ti ti-map-pin" style="font-size:12px" aria-hidden="true"></i> Wuse Zone 4, Abuja</div><div class="prop-details"><span class="prop-detail"><i class="ti ti-bed" style="font-size:13px" aria-hidden="true"></i> 4 Beds</span><span class="prop-detail"><i class="ti ti-bath" style="font-size:13px" aria-hidden="true"></i> 3 Baths</span><span class="prop-detail" style="color:var(--gold);font-weight:700">₦85M</span></div></div>
+      </div>
+      <div class="prop-card">
+        <div class="prop-img"><div class="prop-img-placeholder teal"><svg width="80" height="80" viewBox="0 0 80 80" fill="none"><rect x="5" y="30" width="20" height="50" fill="rgba(205,163,77,0.3)"/><rect x="28" y="10" width="24" height="70" fill="rgba(205,163,77,0.5)"/><rect x="55" y="22" width="18" height="58" fill="rgba(205,163,77,0.35)"/></svg></div><span class="prop-badge">New Launch</span></div>
+        <div class="prop-info"><div class="prop-type">Commercial</div><div class="prop-name">BNR Business Plaza</div><div class="prop-location"><i class="ti ti-map-pin" style="font-size:12px" aria-hidden="true"></i> Maitama, Abuja</div><div class="prop-details"><span class="prop-detail"><i class="ti ti-building" style="font-size:13px" aria-hidden="true"></i> 12 Floors</span><span class="prop-detail"><i class="ti ti-parking" style="font-size:13px" aria-hidden="true"></i> 80 Spaces</span><span class="prop-detail" style="color:var(--gold);font-weight:700">₦2.4B</span></div></div>
+      </div>
+      <div class="prop-card">
+        <div class="prop-img"><div class="prop-img-placeholder warm"><svg width="80" height="80" viewBox="0 0 80 80" fill="none"><rect x="8" y="25" width="18" height="55" fill="rgba(205,163,77,0.3)"/><rect x="29" y="5" width="22" height="75" fill="rgba(205,163,77,0.5)"/><rect x="54" y="32" width="18" height="48" fill="rgba(205,163,77,0.3)"/></svg></div><span class="prop-badge">Off-Plan</span></div>
+        <div class="prop-info"><div class="prop-type">Mixed-Use</div><div class="prop-name">Dansarari Heights</div><div class="prop-location"><i class="ti ti-map-pin" style="font-size:12px" aria-hidden="true"></i> Wuse Zone 4, Abuja</div><div class="prop-details"><span class="prop-detail"><i class="ti ti-home" style="font-size:13px" aria-hidden="true"></i> 24 Units</span><span class="prop-detail"><i class="ti ti-clock" style="font-size:13px" aria-hidden="true"></i> Q3 2026</span><span class="prop-detail" style="color:var(--gold);font-weight:700">From ₦45M</span></div></div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why">
+    <div class="container"><div class="why-inner">
+    <div class="why-visual">
+      <div style="font-size:11px; font-weight:700; letter-spacing:2px; color:var(--gold); text-transform:uppercase; margin-bottom:18px">Performance Track Record</div>
+      <div><div class="why-bar-label">Project Delivery On Time</div><div class="why-bar-track"><div class="why-bar-fill" style="width:94%"></div></div></div>
+      <div><div class="why-bar-label">Client Satisfaction Rate</div><div class="why-bar-track"><div class="why-bar-fill" style="width:98%"></div></div></div>
+      <div><div class="why-bar-label">Investment ROI Achievement</div><div class="why-bar-track"><div class="why-bar-fill" style="width:89%"></div></div></div>
+      <div><div class="why-bar-label">Build Quality Score</div><div class="why-bar-track"><div class="why-bar-fill" style="width:96%"></div></div></div>
+      <div style="border-top:1px solid rgba(205,163,77,0.15); padding-top:18px; margin-top:8px; display:flex; gap:24px">
+        <div><div style="font-size:26px; font-weight:900; color:var(--gold)">120+</div><div style="font-size:10px; color:#6B7280; letter-spacing:1px; text-transform:uppercase; margin-top:2px">Projects</div></div>
+        <div><div style="font-size:26px; font-weight:900; color:var(--gold)">₦12B+</div><div style="font-size:10px; color:#6B7280; letter-spacing:1px; text-transform:uppercase; margin-top:2px">Delivered</div></div>
+        <div><div style="font-size:26px; font-weight:900; color:var(--gold)">15 Yrs</div><div style="font-size:10px; color:#6B7280; letter-spacing:1px; text-transform:uppercase; margin-top:2px">Experience</div></div>
+      </div>
+    </div>
+    <div class="why-content">
+      <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">Why Choose BNR</span></div>
+      <h2 class="section-title" style="margin-top:8px">The <em>BNR</em><br>Advantage</h2>
+      <div class="why-points">
+        <div class="why-point"><div class="why-point-check"><i class="ti ti-check" style="font-size:12px" aria-hidden="true"></i></div><div class="why-point-text"><strong>Abuja's Strategic Locations</strong>Sited in FCT's most sought-after addresses for maximum value appreciation.</div></div>
+        <div class="why-point"><div class="why-point-check"><i class="ti ti-check" style="font-size:12px" aria-hidden="true"></i></div><div class="why-point-text"><strong>Diaspora-Friendly Investment</strong>Flexible payment plans and remote purchase processes for Nigerians abroad.</div></div>
+        <div class="why-point"><div class="why-point-check"><i class="ti ti-check" style="font-size:12px" aria-hidden="true"></i></div><div class="why-point-text"><strong>Transparent Title Documentation</strong>Every BNR property comes with verified, government-backed title documentation.</div></div>
+        <div class="why-point"><div class="why-point-check"><i class="ti ti-check" style="font-size:12px" aria-hidden="true"></i></div><div class="why-point-text"><strong>After-Sales Support</strong>Ongoing property management and support long after handover.</div></div>
+      </div>
+    </div>
+    </div></div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="container">
+    <div class="cta-banner">
+      <div>
+        <div class="cta-title">Ready to Own a Piece<br>of Abuja's Future?</div>
+        <div class="cta-sub">Speak with our property consultants today — no obligation, just clarity.</div>
+      </div>
+      <button class="btn-navy">Get a Free Quote <i class="ti ti-arrow-right" aria-hidden="true" style="color:var(--gold)"></i></button>
+    </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <div class="container">
+    <div class="section-label"><div class="section-label-line"></div><span class="section-label-text">Get In Touch</span></div>
+    <h2 class="section-title" style="margin-top:8px">Contact <em>Us</em></h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item"><div class="contact-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div><div><div class="contact-item-label">Our Office</div><div class="contact-item-val">Suite B5/6 Dansarari Plaza<br>No 5 Ziguinchor Street, Off IBB Way<br>Wuse Zone 4, Abuja, Nigeria</div></div></div>
+        <div class="contact-item"><div class="contact-icon"><i class="ti ti-phone" aria-hidden="true"></i></div><div><div class="contact-item-label">Phone</div><div class="contact-item-val">+1 469 473 9627<br>07010166524</div></div></div>
+        <div class="contact-item"><div class="contact-icon"><i class="ti ti-mail" aria-hidden="true"></i></div><div><div class="contact-item-label">Email</div><div class="contact-item-val" style="color:var(--gold)">bnrinvestmentsltd@gmail.com</div></div></div>
+        <div class="contact-item"><div class="contact-icon"><i class="ti ti-clock" aria-hidden="true"></i></div><div><div class="contact-item-label">Office Hours</div><div class="contact-item-val">Monday – Friday: 8:00am – 5:00pm<br>Saturday: 9:00am – 2:00pm</div></div></div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-field"><label class="form-label">Full Name</label><input class="form-input" type="text" placeholder="John Doe" /></div>
+          <div class="form-field"><label class="form-label">Phone Number</label><input class="form-input" type="text" placeholder="+234 ..." /></div>
+        </div>
+        <div class="form-field"><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="you@example.com" /></div>
+        <div class="form-field"><label class="form-label">Service Interest</label><input class="form-input" type="text" placeholder="e.g. Residential Purchase, Land, Consulting..." /></div>
+        <div class="form-field"><label class="form-label">Message</label><textarea class="form-input form-textarea" placeholder="Tell us about your property goals..."></textarea></div>
+        <button class="btn-gold" style="align-self:flex-start">Send Message <i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img src="XprntPrmryDoveLogo.png" alt="BNR Investments Logo" />
+          <div class="nav-brand">
+            <span class="nav-brand-name">BNR INVESTMENTS LTD</span>
+            <span class="nav-brand-sub">Property &amp; Real Estate Development</span>
+          </div>
+        </div>
+        <p class="footer-brand-desc">Building towering legacies across Nigeria. Real estate development anchored in integrity, vision, and excellence.</p>
+        <div class="footer-social">
+          <div class="social-btn"><i class="ti ti-brand-facebook" aria-hidden="true"></i></div>
+          <div class="social-btn"><i class="ti ti-brand-instagram" aria-hidden="true"></i></div>
+          <div class="social-btn"><i class="ti ti-brand-linkedin" aria-hidden="true"></i></div>
+          <div class="social-btn"><i class="ti ti-brand-x" aria-hidden="true"></i></div>
+        </div>
+      </div>
+      <div class="footer-col"><div class="footer-col-title">Navigation</div><ul><li><a href="#">Home</a></li><li><a href="#">About Us</a></li><li><a href="#">Services</a></li><li><a href="#">Properties</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Services</div><ul><li><a href="#">Residential Dev.</a></li><li><a href="#">Commercial Dev.</a></li><li><a href="#">Land Acquisition</a></li><li><a href="#">Property Mgmt.</a></li><li><a href="#">Investment Advice</a></li><li><a href="#">Get a Quote</a></li></ul></div>
+      <div class="footer-col"><div class="footer-col-title">Contact</div><ul><li><a href="#">Suite B5/6 Dansarari Plaza, Wuse Zone 4, Abuja</a></li><li><a href="#">+1 469 473 9627</a></li><li><a href="#">07010166524</a></li><li><a href="#">bnrinvestmentsltd@gmail.com</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 <span>BNR Investments Ltd</span>. All rights reserved.</span>
+      <span class="footer-copy">Designed with <span>♦</span> in Abuja, Nigeria</span>
+    </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const hamburger = document.querySelector('.nav-hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
